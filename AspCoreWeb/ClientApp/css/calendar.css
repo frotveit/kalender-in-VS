@@ -234,8 +234,42 @@
     background: transparent;
 }
 
-    .cal-free:hover {
-        background-color: #e6e6e6;
-        /*z-index: 1;*/
-    }
+.cal-free:hover {
+    background-color: #e6e6e6;
+    /*z-index: 1;*/
+}
+
+.cal-new-appointment {
+    height: 40px;
+    background: transparent;
+    background-color: lightcoral;
+    flex-direction: row;
+    border-style: solid;
+    border-color: lightgrey;
+    border-width: 1px;
+}
+
+.cal-new-appointment-inner {
+    height: 40px;
+    padding: 5px;
+    background: transparent;
+    background-color: lightcoral;
+    float: left;
+    overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+.cal-new-appointment-adjustor {
+    height: 40px;
+    width: 5px;
+    background-color: darkgray;
+    float: right;
+    top: 0;    
+}
+
+.cal-new-appointment-adjustor:hover {
+    cursor: pointer;    
+}
 

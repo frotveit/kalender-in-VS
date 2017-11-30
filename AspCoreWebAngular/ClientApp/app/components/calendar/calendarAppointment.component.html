@@ -1,0 +1,7 @@
+﻿
+<div class="cal-appointment"
+     [style.left.px]="((appointment.Time - 8) * 100).toString()"
+     [style.width.px]="(appointment.Length * 100).toString()"
+     (click)="onClick()">
+    {{ appointment.Description }}
+</div>

@@ -37,6 +37,7 @@ export interface ISetup {
 
 export interface IAppointment {
     key: number;
+    personId: number;
     type: AppointmentType;
     description: string;
     date: Date;

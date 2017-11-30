@@ -10,13 +10,15 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { CalendarAppointmentComponent } from './components/calendar/calendarAppointment.component';
+import {EditAppointmentComponent } from './components/calendar/editAppointment.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavMenuComponent,
         CounterComponent,
-        CalendarComponent,
+        CalendarComponent, CalendarAppointmentComponent, EditAppointmentComponent,
         FetchDataComponent,
         HomeComponent
     ],
@@ -28,7 +30,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
-            { path: 'calendar', component: CalendarComponent },
+            { path: 'calendar', component: CalendarComponent },            
             { path: 'fetch-data', component: FetchDataComponent },
             { path: '**', redirectTo: 'home' }
         ])

@@ -1,4 +1,4 @@
-import { IAppointment, AppointmentType } from './Interfaces';
+import { IAppointment, AppointmentType, INewAppointmentData } from './Interfaces';
 
 export class Appointment implements IAppointment {
     type: AppointmentType;
@@ -8,6 +8,7 @@ export class Appointment implements IAppointment {
     length: number;
 
     key: number;
+    personId: number;
     timeTo: number;    
     rowNum: number;
 
@@ -57,5 +58,15 @@ export class Appointment implements IAppointment {
             }
         });
         return overlap;
+    }
+
+    public static CreateNewAppointment(appointmentData: INewAppointmentData): IAppointment {
+        var appointment: IAppointment = new Appointment(0);
+        appointment.date = appointmentData.date;
+        appointment.time = appointmentData.time;
+        appointment.timeTo = appointmentData.timeTo;
+        appointment.length = appointment.timeTo - appointment.time;
+        appointment.type = "N";
+        return appointment;
     }
 }

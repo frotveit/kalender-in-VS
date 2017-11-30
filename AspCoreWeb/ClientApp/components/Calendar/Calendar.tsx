@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { ICalendarInput, ISetup, ICalData } from './model/Interfaces';
+import { ICalendarInput, ISetup, ICalData, IAppointment, INewAppointmentData } from './model/Interfaces';
 import { GetCalendarSetup } from './CalendarSetup';
 import { GetData, GetCurrentAppointments } from './CalendarData';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarGrid } from './CalendarGrid';
 import * as DateTimeUtil from './DateTimeHelpers';
 import { CalendarInput } from './demodata/DemoData';
+import { AppointmentEdit } from './AppointmentEdit';
 
 interface ICalendarProps extends RouteComponentProps<{}> {
 }
@@ -15,6 +16,7 @@ interface ICalendarState {
     CurrentDate: Date;
     Data: ICalData;
     Setup: ISetup;
+    NewAppointment?: IAppointment;
 }
 
 // class Calendar extends React.Component<ICalendarInput, ICalendarState> {
@@ -64,10 +66,22 @@ class Calendar extends React.Component<ICalendarProps, ICalendarState> {
         this.setState({Setup: this.state.Setup.changeDayLength(longDay)});
     }
 
-    onAddAppointment(): void {
-        var data = GetCurrentAppointments(this.state.Data, this.state.CurrentDate);
-        this.setState({            
-            Data: data
+    onAddAppointment(appointment: IAppointment): void {
+        var data = GetCurrentAppointments(this.state.Data, this.state.CurrentDate);                
+        this.setState({
+            Data: data,            
+        });
+    }
+
+    onNewAppointment(appointment: IAppointment): void {        
+        this.setState({
+            NewAppointment: appointment
+        });
+    }
+
+    onUpdateNewAppointment(appointment: IAppointment): void {
+        this.setState({
+            NewAppointment: appointment
         });
     }
 
@@ -79,8 +93,15 @@ class Calendar extends React.Component<ICalendarProps, ICalendarState> {
                     date={this.state.CurrentDate}
                     onChangeDay={this.onChangeDay}                   
                     onChangeDayLength={this.onChangeDayLength}
-                />                
-                <CalendarGrid date={this.state.CurrentDate} data={this.state.Data} setup={this.state.Setup} onAddAppointment={this.onAddAppointment} />
+                />
+                <CalendarGrid date={this.state.CurrentDate} data={this.state.Data} setup={this.state.Setup} newAppointment={this.state.NewAppointment}
+                    onNewAppointment={this.onNewAppointment.bind(this)}
+                    onUpdateNewAppointment={this.onUpdateNewAppointment.bind(this)}
+                />
+                {
+                    this.state.NewAppointment &&
+                    <AppointmentEdit appointment={this.state.NewAppointment} onAppointmentUpdated={this.onUpdateNewAppointment.bind(this)} />
+                }
             </div>);
     }
 }

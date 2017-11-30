@@ -1,3 +1,24 @@
 ﻿<h1>Calendar</h1>
 
-<div> Test </div>
+<div class="calendar">
+    <div class="cal-header">
+        <button (click)="goToday()">Today</button>
+        <button (click)="goPrev()"> Prev </button>
+        <span><strong>{{ getDate() }}</strong></span>
+        <button (click)="goNext()">Next</button>
+    </div>
+    <div class="cal-grid">
+        <div class="cal-grid-header">
+            <div class="cal-row-name">Name</div>
+        </div>
+        <div class="cal-row" *ngFor="let person of persons">
+            <div class="cal-row-name">{{ person.Name }}</div>
+            <div class="cal-row-cont" *ngFor="let appointment of person.Appointments">
+                <calendarAppointment [appointment]='appointment' (appointmentSelected)="onAppointmentSelected($event)"></calendarAppointment>
+            </div>            
+        </div>
+    </div>
+    <div class="cal-edit-container" *ngIf="activeAppointment">
+        <editAppointment [appointment]='activeAppointment'></editAppointment>
+    </div>
+</div>

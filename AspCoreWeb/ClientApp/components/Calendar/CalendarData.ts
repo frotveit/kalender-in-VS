@@ -59,6 +59,7 @@ function GetAppointments(input: ICalendarInput, data: ICalData): IPerson[] {
                 newAppointment.time = appointment.date.getHours() + appointment.date.getMinutes() * 60 / 100;
                 newAppointment.length = (appointment.dateTo.getTime() - appointment.date.getTime()) / 1000 / 60 / 60;
                 newAppointment.timeTo = newAppointment.time + newAppointment.length;
+                newAppointment.personId = per.id;
                 per.appointments.push(newAppointment);
             }
         });

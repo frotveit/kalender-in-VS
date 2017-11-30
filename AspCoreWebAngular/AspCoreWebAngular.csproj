@@ -22,10 +22,18 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\components\calendar\calendar.component.ts" />
+    <None Remove="ClientApp\app\components\calendar\calendarAppointment.component.ts" />
+    <None Remove="ClientApp\app\components\calendar\model\calendar.interfaces.ts" />
+    <None Remove="ClientApp\app\components\calendar\model\dateTimeHelpers.ts" />
+    <None Remove="ClientApp\app\components\calendar\model\demodata.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\calendar\calendar.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\calendar\calendarAppointment.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\calendar\model\calendar.interfaces.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\calendar\model\dateTimeHelpers.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\calendar\model\demodata.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

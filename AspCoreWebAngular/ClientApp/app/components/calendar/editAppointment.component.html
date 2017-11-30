@@ -1,0 +1,30 @@
+﻿
+<div class="cal-edit">
+
+    <div>
+        <label>Description</label>
+        <input type="text" class="cal-edit-field" id="description"
+               required
+               [(ngModel)]="appointment.Description" name="description" />
+    </div>
+        
+    <div>
+        <label>Date {{appointment.Date.toDateString()}}</label>
+        <label class="cal-edit-field">Date {{appointment.Date.toDateString()}}</label>
+    </div>
+
+    <div>
+        <label>Time {{appointment.Time.toString()}}</label>
+        <input type="number" class="cal-edit-field" id="time"
+               [(ngModel)]="appointment.Time" name="time" />
+    </div>
+
+    <div>
+        <label>Length</label>
+        <input type="number" class="cal-edit-field" id="lendth"
+               [(ngModel)]="appointment.Length" name="length" />
+    </div>
+
+    <button type="button" class="btn btn-default" (click)="onSave()">Save</button>
+
+</div>

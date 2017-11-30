@@ -93,7 +93,7 @@ export class CalendarAppointment extends React.Component<ICalendarAppointmentPro
                 ref={(el: HTMLDivElement) => this._appointmentDiv = el}
             >
                 <div className="cal-appointment-time"> Kl. {displayTime} <br /> </div>
-                <div className="-cal-appointment-description">
+                <div className="cal-appointment-description">
                     {
                         appointment.type === 'D' && 
                         <i className="fa fa-exclamation-triangle" style={iconStyle} />

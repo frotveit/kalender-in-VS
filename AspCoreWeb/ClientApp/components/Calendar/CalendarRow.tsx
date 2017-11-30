@@ -1,14 +1,18 @@
 ﻿import * as React from 'react';
-import { ISetup, ICalData, IPerson, IFreeAppointment, IAppointment } from './model/Interfaces';
+import { ISetup, ICalData, IPerson, IFreeAppointment, IAppointment, INewAppointmentData } from './model/Interfaces';
 import { CalendarAppointment } from './CalendarAppointment';
 import { FreeAppointment } from './FreeAppointment';
+import { NewAppointment } from './NewAppointment';
+import { Appointment } from './model/Appointment';
 
 export interface ICalendarRowProps {
     date: Date;
     setup: ISetup;
     person: IPerson;
     data: ICalData;
-    onAddAppointment: () => void;
+    newAppointment?: IAppointment;
+    onNewAppointment: (appointment: IAppointment) => void;
+    onUpdateNewAppointment: (appointment: IAppointment) => void;
 }
 
 export class CalendarRow extends React.Component<ICalendarRowProps, {}> {
@@ -16,7 +20,7 @@ export class CalendarRow extends React.Component<ICalendarRowProps, {}> {
     constructor(props: ICalendarRowProps) {
         super(props);
         // this.onClicked = this.onClicked.bind(this);
-        this.addAppointment = this.addAppointment.bind(this);
+        this.onNewAppointment = this.onNewAppointment.bind(this);
     }
     /*onClicked (e) {
         var setup = this.props.setup;
@@ -24,22 +28,35 @@ export class CalendarRow extends React.Component<ICalendarRowProps, {}> {
         //this.addAppointment(time);
     }*/
 
-    addAppointment(time: number) {
+    onNewAppointment(time: number) {
         var person = this.props.person,
             currentDate = this.props.date,
             timeFrom = Math.floor(time * 4) / 4,
             timeTo = timeFrom + 1;
+        var newAppointmentTime: INewAppointmentData = {
+                date: currentDate, 
+                time: timeFrom, 
+                timeTo: timeTo
+            }
 
-        if (person.isFree && person.isFree(currentDate, timeFrom, timeTo, person.currentAppointments)) {
-            person.addAppointment(
-                this.props.data,
-                { 
-                    date: currentDate, 
-                    time: timeFrom, 
-                    timeTo: timeTo 
-                }
-            );
-            this.props.onAddAppointment();
+        if (person.isFree(currentDate, timeFrom, timeTo, person.currentAppointments)) {
+            //person.addAppointment(
+            //    this.props.data,
+            //    newAppointmentTime
+            //);
+            if (this.props.newAppointment) {
+                var appointment = this.props.newAppointment;
+                appointment.personId = person.id;
+                appointment.date = newAppointmentTime.date;
+                appointment.time = newAppointmentTime.time;
+                appointment.timeTo = appointment.time + appointment.length; // Keep the current length
+                this.props.onUpdateNewAppointment(appointment);
+            }
+            else {
+                var newAppointment = Appointment.CreateNewAppointment(newAppointmentTime);
+                newAppointment.personId = this.props.person.id;
+                this.props.onNewAppointment(newAppointment);
+            }
         }
     }
 
@@ -65,20 +82,26 @@ export class CalendarRow extends React.Component<ICalendarRowProps, {}> {
                                     key={a.key} 
                                     appointment={a} 
                                     setup={me.props.setup} 
-                                    addAppointment={me.addAppointment} 
+                                    addAppointment={me.onNewAppointment} 
                                 />;
                             }, 
                             this)
                     }
-                    {person.freeAppointments.map(
+                    {
+                        person.freeAppointments.map(
                         function (a: IFreeAppointment) {
                         return <FreeAppointment 
                             key={a.key} 
                             appointment={a} 
-                            setup={me.props.setup} 
-                            addAppointment={me.addAppointment} 
+                            setup={setup}
+                            addAppointment={me.onNewAppointment} 
                         />;
-                    },  this)}
+                        }, this)
+                    }
+                    {
+                        this.props.newAppointment && this.props.newAppointment.personId === this.props.person.id && this.props.newAppointment.date === this.props.date &&
+                        <NewAppointment appointment={this.props.newAppointment} setup={setup} />
+                    }
                 </div>
             </div>);
     }

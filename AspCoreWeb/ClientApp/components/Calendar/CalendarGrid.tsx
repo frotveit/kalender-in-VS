@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import { ISetup, IPerson, ICalData } from './model/Interfaces';
+import { ISetup, IPerson, ICalData, IAppointment, INewAppointmentData } from './model/Interfaces';
 import { CalendarGridHeader } from './CalendarGridHeader';
 import { CalendarRow } from './CalendarRow';
 
@@ -7,18 +7,17 @@ export interface ICalendarGridProps {
     date: Date;
     data: ICalData;
     setup: ISetup;
-    onAddAppointment: () => void;
+    newAppointment?: IAppointment;
+    onNewAppointment: (appointment: IAppointment) => void;
+    onUpdateNewAppointment: (appointment: IAppointment) => void;
 }
 
 export class CalendarGrid extends React.Component<ICalendarGridProps, {}> {
     displayName = 'Grid';
     constructor(props: ICalendarGridProps) {
         super(props);
-        this.onAddAppointment = this.onAddAppointment.bind(this);
     }
-    onAddAppointment() {
-        this.props.onAddAppointment();
-    }
+    
     render() {
         var me = this,
             data = this.props.data,
@@ -33,10 +32,12 @@ export class CalendarGrid extends React.Component<ICalendarGridProps, {}> {
                             <CalendarRow 
                                 key={person.name}
                                 date={me.props.date}
-                                data={data} 
-                                person={person} 
-                                setup={setup} 
-                                onAddAppointment={me.onAddAppointment} 
+                                data={data}
+                                person={person}
+                                setup={setup}
+                                newAppointment={me.props.newAppointment}
+                                onNewAppointment={me.props.onNewAppointment}
+                                onUpdateNewAppointment={me.props.onUpdateNewAppointment}                                
                             />
                             <HorizontalLine />
                         </div>

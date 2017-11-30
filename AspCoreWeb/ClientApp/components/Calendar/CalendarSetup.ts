@@ -48,7 +48,7 @@ export class CalendarSetup implements ISetup {
             menuWidth = Math.floor(totalWidth / 4),
             calendarWidth = totalWidth - menuWidth,
             gridWidth = calendarWidth - this.nameWidth,
-            hourWidth = gridWidth / numHours; 
+            hourWidth = Math.floor(gridWidth / numHours); 
         this.hourWidth = hourWidth;
     }
 

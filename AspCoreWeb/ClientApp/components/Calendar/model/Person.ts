@@ -59,7 +59,8 @@ export class Person implements IPerson {
         appointment.date = newAppointmentData.date;
         appointment.time = newAppointmentData.time;
         appointment.length = newAppointmentData.timeTo - newAppointmentData.time;
-        appointment.timeTo = newAppointmentData.timeTo;       
+        appointment.timeTo = newAppointmentData.timeTo;
+        appointment.personId = this.id;
     
         this.appointments.push(appointment);
         this.currentAppointments.push(appointment);

@@ -1,0 +1,43 @@
+﻿.cal-header {
+    background-color:aliceblue;
+    flex-direction: row;
+    width: 100%;
+     padding: 10px 0;
+}
+
+.cal-grid {
+    flex-direction: column;
+}
+
+.cal-grid-header {
+    width: 100%;
+    background-color:antiquewhite;
+}
+
+.cal-row {
+    position:relative;
+    flex-direction: row;
+    display: block;
+    height: 41px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: lightgrey;
+}
+
+.cal-row-cont {
+    position: relative;
+    top: 0;
+    left: 130px;
+    flex-direction: row;
+    width: 100%;
+}
+
+.cal-row-name {
+    width: 120px;
+    padding: 10px;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: lightgray;
+}
+
+
