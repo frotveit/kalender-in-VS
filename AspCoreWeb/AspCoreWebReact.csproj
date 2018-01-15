@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="jest.TypeScript.DefinitelyTyped" Version="0.1.4" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -69,6 +69,10 @@
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </ResolvedFileToPublish>
     </ItemGroup>
+  </Target>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="lessc ClientApp\css\site.less ClientApp\css\site.css&#xD;&#xA;lessc ClientApp\css\lessStyles.less ClientApp\css\lessStyles.css&#xD;&#xA;sass ClientApp\css\sassStyles.scss ClientApp\css\sassStyles.css" />
   </Target>
 
 </Project>

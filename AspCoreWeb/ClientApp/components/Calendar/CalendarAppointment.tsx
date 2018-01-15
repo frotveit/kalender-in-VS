@@ -16,7 +16,7 @@ interface ICalendarAppointmentState {
 
 export class CalendarAppointment extends React.Component<ICalendarAppointmentProps, ICalendarAppointmentState> {
     displayName = 'Appointment';
-    _appointmentDiv: HTMLDivElement;
+    _appointmentDiv: HTMLDivElement | null;
     constructor(props: ICalendarAppointmentProps) {
         super(props);
         this.state = {
@@ -90,7 +90,7 @@ export class CalendarAppointment extends React.Component<ICalendarAppointmentPro
                 onMouseOver={this.onMouseOver}
                 onMouseMove={this.onMouseOver}
                 onMouseLeave={this.onMouseLeave}
-                ref={(el: HTMLDivElement) => this._appointmentDiv = el}
+                ref={(el: HTMLDivElement|null) => this._appointmentDiv = el}
             >
                 <div className="cal-appointment-time"> Kl. {displayTime} <br /> </div>
                 <div className="cal-appointment-description">

@@ -83,6 +83,7 @@ class Calendar extends React.Component<ICalendarProps, ICalendarState> {
         this.setState({
             NewAppointment: appointment
         });
+        this.onChangeDay(appointment.date);
     }
 
     render() {

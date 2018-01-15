@@ -25,10 +25,10 @@ export class NewAppointment extends React.Component<INewAppointmentProps, {}> {
         var posX = event.clientX;
         var posX2 = event.pageX;
         var posX3 = event.screenX;
-        var p = this._dragger.clientLeft;
+        var p = this._dragger ? this._dragger.clientLeft: null;
     }
 
-    _dragger: HTMLDivElement;
+    _dragger: HTMLDivElement | null;
     
     render() {
         var appointment = this.props.appointment,
@@ -53,7 +53,7 @@ export class NewAppointment extends React.Component<INewAppointmentProps, {}> {
                 </div>
                 <div className="cal-new-appointment-adjustor" draggable={true}
                     onDrag={this.onDrag.bind(this)} onDragEnd={this.onDragEnd.bind(this)}
-                    ref={(el: HTMLDivElement) => this._dragger = el}
+                    ref={(el: HTMLDivElement|null) => this._dragger = el}
                 />
             </div>
         );

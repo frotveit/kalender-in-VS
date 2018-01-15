@@ -3,6 +3,9 @@ import { IAppointment } from './model/Interfaces';
 import { NumberEdit } from './NumberEdit';
 import { TimeEdit } from './TimeEdit'; 
 import { DateEdit } from './DateEdit';
+// import DatePicker from 'react-date-picker';
+// import Datepicker from 'react-datepicker';
+import * as Moment from 'moment';
 
 export interface AppointmentEditProps {
     appointment: IAppointment;
@@ -44,6 +47,10 @@ export class AppointmentEdit extends React.Component<AppointmentEditProps, Appoi
         this.props.onAppointmentUpdated(appointment);
     }
 
+    onChangedDateByMoment() {
+
+    }
+
     render() {
         var appointment = this.props.appointment;
 
@@ -52,7 +59,31 @@ export class AppointmentEdit extends React.Component<AppointmentEditProps, Appoi
                 <label> Description </label>
                 <input value={appointment.description} onChange={this.onchangeDescription.bind(this)} />                               
 
-                <DateEdit label="Date" date={appointment.date} onChanged={this.onchangeTime.bind(this)} />
+                <DateEdit label="Date" date={appointment.date} onChanged={this.onchangeDate.bind(this)} />
+                {
+                    //<div>
+                    //    <DatePicker
+                    //        onChange={this.onchangeDate.bind(this)}
+                    //        value={appointment.date}
+                    //        locale="no-NO"
+                    //        showWeekNumbers={true}
+                    //    />
+                    //</div>
+                }
+                {
+                    //<div>
+                    //    <Datepicker
+                    //        onChange={this.onChangedDateByMoment.bind(this)}
+                    //        selected={Moment(appointment.date)}
+                    //        scrollableYearDropdown={true}
+                    //        showWeekNumbers={true}
+                    //        dateFormat="DD.MM.YYYY"
+                    //        locale="no-no"
+                    //        monthsShown={2}
+                    //    />
+                    //</div>
+                }
+                
 
                 <TimeEdit label="Time" time={appointment.time} onChanged={this.onchangeTime.bind(this)} />
 
