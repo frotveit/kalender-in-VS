@@ -1,9 +1,12 @@
 /* -- Calendar -- */
+@import "../../node_modules/react-datepicker/dist/react-datepicker.css";
 .cal-component {
   flex-direction: column;
   text-align: center;
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
 }
 /* -- Calendar header -- */
 .cal-header {
@@ -136,6 +139,38 @@
   text-overflow: ellipsis;
   flex-direction: row;
 }
+.cal-appointment-type {
+  color: white;
+  background-color: #444444;
+}
+.cal-appointment-typeA {
+  color: black;
+  background-color: #D6E6B3;
+}
+.cal-appointment-typeB {
+  color: black;
+  background-color: #D6E6B3;
+}
+.cal-appointment-typeC {
+  color: black;
+  background-color: #D6E6B3;
+}
+.cal-appointment-typeD {
+  color: black;
+  background-color: #D6E6B3;
+}
+.cal-appointment-typeN {
+  color: black;
+  background-color: lightcoral;
+}
+.cal-appointment-typeK {
+  color: black;
+  background-color: #A5D1E7;
+}
+.cal-appointment-typeKG {
+  color: black;
+  background-color: #FFC89D;
+}
 .cal-appointment-time {
   display: none;
   font-size: 12px;
@@ -197,37 +232,27 @@
 .cal-new-appointment-adjustor:hover {
   cursor: pointer;
 }
-.cal-appointment-type {
-  color: white;
-  background-color: #444444;
+.cal-appointment-edit {
+  float: left;
+  flex-direction: row;
+  width: 50%;
+  height: 200px;
 }
-.cal-appointment-typeA {
-  color: black;
-  background-color: #D6E6B3;
+.cal-field-container {
+  width: 50%;
+  height: 50px;
+  float: left;
+  padding: 5px;
+  flex-direction: row;
 }
-.cal-appointment-typeB {
-  color: black;
-  background-color: #D6E6B3;
+.cal-field-container label {
+  text-align: left;
+  float: left;
+  width: 45%;
 }
-.cal-appointment-typeC {
-  color: black;
-  background-color: #D6E6B3;
-}
-.cal-appointment-typeD {
-  color: black;
-  background-color: #D6E6B3;
-}
-.cal-appointment-typeN {
-  color: black;
-  background-color: lightcoral;
-}
-.cal-appointment-typeK {
-  color: black;
-  background-color: #A5D1E7;
-}
-.cal-appointment-typeKG {
-  color: black;
-  background-color: #FFC89D;
+.cal-field-container .field {
+  width: 50%;
+  float: left;
 }
 .main-nav li .glyphicon {
   margin-right: 10px;

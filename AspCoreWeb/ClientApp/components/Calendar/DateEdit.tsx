@@ -47,13 +47,15 @@ export class DateEdit extends React.Component<DateEditProps, DateEditState> {
 
     render() {
         return (
-            <div>
-                <label> {this.props.label} {this.formatDate(this.props.date)} </label>
-                <input type="date" value={this.formatDate(this.props.date)} onChange={this.onchange.bind(this)} />
-                {
-                    this.state.error && this.state.error.length > 0 &&
-                    <label>  {this.state.error} </label>
-                }
+            <div className="date-edit" >
+                <label> {this.props.label} </label>
+                <div className="field">
+                    <input type="date" value={this.formatDate(this.props.date)} onChange={this.onchange.bind(this)} />
+                    {
+                        this.state.error && this.state.error.length > 0 &&
+                        <label>  {this.state.error} </label>
+                    }
+                </div>
             </div>
         )
     }

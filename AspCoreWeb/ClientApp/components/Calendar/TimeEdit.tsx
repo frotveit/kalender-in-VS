@@ -51,11 +51,13 @@ export class TimeEdit extends React.Component<TimeEditProps, TimeEditState> {
         return (
             <div>
                 <label> {this.props.label} {this.formatTime(this.props.time)} </label>
-                <input type="time" value={this.formatTime(this.props.time)} onChange={this.onchange.bind(this)} />
-                {
-                    this.state.error && this.state.error.length > 0 &&
-                    <label>  {this.state.error} </label>
-                }
+                <div className="field">
+                    <input type="time" value={this.formatTime(this.props.time)} onChange={this.onchange.bind(this)} />
+                    {
+                        this.state.error && this.state.error.length > 0 &&
+                        <label>  {this.state.error} </label>
+                    }
+                </div>
             </div>
         )
     }
